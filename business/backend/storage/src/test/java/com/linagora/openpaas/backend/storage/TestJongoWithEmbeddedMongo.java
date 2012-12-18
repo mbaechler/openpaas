@@ -6,46 +6,39 @@ import java.net.UnknownHostException;
 
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
+import org.jongo.marshall.jackson.JacksonMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mongodb.Mongo;
-
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodProcess;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.MongodConfig;
-import de.flapdoodle.embed.mongo.distribution.Version;
-import de.flapdoodle.embed.process.runtime.Network;
+import com.fasterxml.jackson.databind.MapperFeature;
 
 public class TestJongoWithEmbeddedMongo {
 
-    private MongodExecutable mongodExe;
-    private MongodProcess mongod;
-    private Mongo mongo;
+	private MongoTestServer mongoTestServer;
     
     @Before
     public void setUp() throws Exception {
-        MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(new MongodConfig(Version.Main.V2_0, 12345, Network.localhostIsIPv6()));
-        mongod = mongodExe.start();
-        mongo = new Mongo("localhost", 12345);
+        mongoTestServer = new MongoTestServer();
+        mongoTestServer.start();
     }
 
     @After
     public void tearDown() throws Exception {
-        mongod.stop();
-        mongodExe.cleanup();
+    	mongoTestServer.stop();
     }
 
     @Test
 	public void testCreateUser() throws UnknownHostException {
-		Jongo jongo = new Jongo(mongo.getDB("matthieu"));
+		Jongo jongo = new Jongo(mongoTestServer.client().getDB("matthieu"), 
+				new JacksonMapper.Builder()
+					.enable(MapperFeature.USE_ANNOTATIONS)
+					.build());
 		MongoCollection users = jongo.getCollection("users");
-		users.save(new User("matthieu"));
+		User user = User.builder().login("matthieu").build();
+		users.save(user);
 		Iterable<User> list = users.find().as(User.class);
-		assertThat(list).containsOnly(new User("matthieu"));
+		assertThat(list).containsOnly(user);
 	}
 	
 }

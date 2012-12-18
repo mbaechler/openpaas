@@ -1,26 +1,58 @@
 package com.linagora.openpaas.backend.storage;
 
 import org.bson.types.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 
 public class User {
+	
+	public static class Id {
+		private final ObjectId id;
+
+		private Id(ObjectId id) {
+			this.id = id;
+		}
+		
+		private Id(String id) {
+			this.id = ObjectId.massageToObjectId(id);
+		}
+		
+		public ObjectId getId() {
+			return id;
+		}
+	}
+	
+	public static Builder builder() {
+		return new Builder();
+	}
+	
+	public static class Builder {
+		private String login;
+
+		public Builder() {
+		}
+		
+		public Builder login(String login) {
+			this.login = login;
+			return this;
+		}
+		
+		public User build() {
+			return new User(null, login);
+		}
+	}
+
 	private ObjectId _id;
-	private String login;
+	@JsonProperty private String login;
 	
-	public User() {
-		super();
-	}
-
-	public User(String login) {
+	private User() {}
+	
+	private User(Id _id, String login) {
 		super();
 		this.login = login;
 	}
 
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
 	public String getLogin() {
 		return login;
 	}
@@ -45,6 +77,10 @@ public class User {
 			.add("_id", _id)
 			.add("login", login)
 			.toString();
+	}
+
+	public Id getId() {
+		return new Id(_id);
 	}
 	
 }
