@@ -12,7 +12,24 @@
 
 	<modules>
 		<module>storage</module>
+		<module>services</module>
+		<module>services-integration-test</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.linagora.openpaas</groupId>
+				<artifactId>storage</artifactId>
+				<version>${openpaas.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.linagora.openpaas</groupId>
+				<artifactId>services</artifactId>
+				<version>${openpaas.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
 

@@ -9,6 +9,9 @@
 		<maven>3.0</maven>
 	</prerequisites>
 
+	<properties>
+		<openpaas.version>0.1-SNAPSHOT</openpaas.version>
+	</properties>
 
 	<modules>
 		<module>backend</module>
