@@ -14,6 +14,7 @@
 		<module>storage</module>
 		<module>services</module>
 		<module>services-integration-test</module>
+		<module>application</module>
 	</modules>
 
 	<dependencyManagement>

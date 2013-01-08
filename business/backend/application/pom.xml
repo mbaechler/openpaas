@@ -1,0 +1,21 @@
+<project>
+	<parent>
+		<groupId>com.linagora.openpaas</groupId>
+		<artifactId>backend</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.linagora.openpaas</groupId>
+	<artifactId>application</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.linagora.openpaas</groupId>
+			<artifactId>services</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
+
