@@ -13,6 +13,7 @@ import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
 public class ServicesModule extends JerseyServletModule {
+	
 	@Override
 	protected void configureServlets() {
 		// Must configure at least one JAX-RS resource or the

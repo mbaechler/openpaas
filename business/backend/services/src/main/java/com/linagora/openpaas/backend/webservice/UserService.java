@@ -2,6 +2,7 @@ package com.linagora.openpaas.backend.webservice;
 
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,6 +18,7 @@ import com.linagora.openpaas.backend.storage.UserDAO;
 
 @Path("/userService")
 @Produces(MediaType.APPLICATION_JSON)
+@Singleton
 public class UserService {
 	
 	private UserDAO userDAO;

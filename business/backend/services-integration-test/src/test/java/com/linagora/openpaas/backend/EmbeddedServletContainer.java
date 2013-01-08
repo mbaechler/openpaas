@@ -14,9 +14,11 @@ import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.DefaultServlet;
 
 import com.google.common.base.Throwables;
+import com.google.inject.Singleton;
 import com.google.inject.servlet.GuiceFilter;
 import com.linagora.openpaas.backend.storage.MongoTestServer;
 
+@Singleton
 public class EmbeddedServletContainer {
 
 	private Server server;

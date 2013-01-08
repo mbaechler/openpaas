@@ -1,6 +1,7 @@
 package com.linagora.openpaas.backend.storage;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
@@ -10,6 +11,7 @@ import com.mongodb.DB;
 import com.mongodb.MongoException;
 import com.mongodb.WriteResult;
 
+@Singleton
 public class MongoUserDAO implements UserDAO {
 
 	private static final String USERS_COLLECTION = "users"; 
