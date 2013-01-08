@@ -21,3 +21,9 @@ Feature: create a new user
   Scenario: create a new user with an already used email
     When I create a user with login "devil@parti-socialiste.fr" and email "jaures@parti-socialiste.fr"
 	Then there is one more user in the system
+	
+  Scenario: create a new user with an already used login but different case
+    When I create a user with login and email "JAURES@parti-socialiste.fr"
+    Then there is an error saying "jean@parti-socialiste.fr" login is already used
+    And there is no new user in the system
+  

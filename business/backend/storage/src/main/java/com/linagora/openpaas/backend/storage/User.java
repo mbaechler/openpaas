@@ -1,5 +1,7 @@
 package com.linagora.openpaas.backend.storage;
 
+import java.util.Locale;
+
 import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -57,7 +59,7 @@ public class User {
 		}
 		
 		public User build() {
-			return new User(null, login, firstname, lastname, email);
+			return new User(null, login.toLowerCase(Locale.ENGLISH), firstname, lastname, email);
 		}
 
 	}
