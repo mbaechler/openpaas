@@ -34,9 +34,9 @@ public class MongoUserDAOTest {
 
     @Test
     public void userCreation() {
-    	User userToCreate = User.builder().login("myUser").build();
+    	User userToCreate = User.builder().login("myuser").build();
 		User actualUser = userDao.create(userToCreate);
-		assertThat(actualUser.getLogin()).isEqualTo("myUser");
+		assertThat(actualUser.getLogin()).isEqualTo("myuser");
 		assertThat(actualUser.getId()).isNotNull();
     }
 
